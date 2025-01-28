@@ -1,71 +1,146 @@
-/* Reset di base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: sans-serif;
+  color: #fff;
 }
 
-body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+.rotate-message {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.container {
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
+.app-content {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #000;
 }
 
-#loading-message {
-    font-size: 1.2em;
-    margin-bottom: 20px;
+.left-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.landscape-warning {
+.camera-container {
+  position: relative;
+  width: 60vw;
+  height: calc(90vw * 1181 / 1671);
+  background: #000;
+}
+
+#video, #selected-frame, #preview-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+#selected-frame {
+  pointer-events: none;
+}
+
+#preview-img {
+  display: none;
+}
+
+.right-panel {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#capture-btn, #download-link, #upload-frame-btn, #discard-btn, #print-btn, #flash-btn, #reset-frame-btn {
+  display: block;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#download-link {
+  text-decoration: none;
+}
+
+#capture-btn:hover, #upload-frame-btn:hover, #discard-btn:hover, #print-btn:hover, #flash-btn:hover, #reset-frame-btn:hover {
+  background: #333;
+}
+
+/* Stile per l'effetto flash */
+#flash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Notifiche */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: none;
+  z-index: 100;
+}
+
+@media screen and (orientation:portrait) {
+  .app-content {
     display: none;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
-video, canvas {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #fff;
-    margin-bottom: 20px;
-}
-
-.controls {
+  }
+  .rotate-message {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+  }
 }
 
-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-/* Messaggio per dispositivi in verticale */
-@media (orientation: portrait) {
-    .landscape-warning {
-        display: block;
-    }
+@media screen and (orientation:landscape) {
+  .rotate-message {
+    display: none;
+  }
+  .app-content {
+    display: flex;
+  }
 }
