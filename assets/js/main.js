@@ -9,19 +9,26 @@ const saveButton = document.getElementById('save-button');
 const printButton = document.getElementById('print-button');
 const discardButton = document.getElementById('discard-button');
 const installButton = document.getElementById('install-button');
+const loadingMessage = document.getElementById('loading-message');
 
 let currentFrame = null;
 
-// Accesso alla fotocamera
-navigator.mediaDevices.getUserMedia({ video: true })
+// Accesso alla fotocamera posteriore
+navigator.mediaDevices.getUserMedia({ 
+    video: { facingMode: 'environment' } // Usa la fotocamera posteriore
+})
     .then(stream => {
         video.srcObject = stream;
         video.onloadedmetadata = () => {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
+            loadingMessage.style.display = 'none'; // Nasconde il messaggio di caricamento
         };
     })
-    .catch(error => console.error('Errore accesso fotocamera:', error));
+    .catch(error => {
+        console.error('Errore accesso fotocamera:', error);
+        loadingMessage.textContent = 'Errore: impossibile accedere alla fotocamera.';
+    });
 
 // Scatta foto
 captureButton.addEventListener('click', () => {
@@ -40,6 +47,7 @@ frameUpload.addEventListener('change', (event) => {
         img.src = URL.createObjectURL(file);
         img.onload = () => {
             currentFrame = img;
+            alert('Cornice caricata con successo!');
         };
     }
 });
