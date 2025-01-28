@@ -1,41 +1,139 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>PhotoApp2</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhotoApp2 - Scatta, Personalizza e Condividi</title>
+  <meta name="description" content="PhotoApp2 è una web app per scattare foto, applicare cornici personalizzate, salvare e stampare direttamente dal browser. Installabile come PWA.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png" type="image/png">
 </head>
 <body>
-  <div class="rotate-message">Ruota il dispositivo in orizzontale per continuare.</div>
-  
-  <div class="app-content">
-    <div class="left-panel">
-      <div class="camera-container">
-        <video id="video" autoplay playsinline></video>
-        <img id="selected-frame" src="assets/frames/frame.png" alt="Cornice" />
-        <img id="preview-img" alt="Anteprima" style="display:none;" />
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">PhotoApp2</div>
+      <nav>
+        <ul>
+          <li><a href="#intro">Introduzione</a></li>
+          <li><a href="#features">Caratteristiche</a></li>
+          <li><a href="#pwa">PWA</a></li>
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="#support">Supporto</a></li>
+        </ul>
+      </nav>
+      <a href="https://photoapp2.com/app" class="btn">Prova Ora</a>
+    </div>
+  </header>
+
+  <!-- Sezione Hero -->
+  <section id="hero">
+    <div class="container">
+      <h1>PhotoApp2: Scatta, Personalizza e Condividi</h1>
+      <p>Una web app moderna per scattare foto, applicare cornici personalizzate, salvare e stampare in pochi clic. Installabile come app nativa grazie alla tecnologia PWA.</p>
+      <div class="cta">
+        <a href="https://photoapp2.com/app" class="btn">Prova PhotoApp2 Ora</a>
+        <a href="#features" class="btn secondary">Scopri di Più</a>
+      </div>
+      <img src="demo.png" alt="Anteprima di PhotoApp2" class="demo-img">
+    </div>
+  </section>
+
+  <!-- Sezione Caratteristiche -->
+  <section id="features">
+    <div class="container">
+      <h2>Cosa Puoi Fare con PhotoApp2?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <img src="camera-icon.png" alt="Icona Fotocamera">
+          <h3>Scatta Foto</h3>
+          <p>Accedi alla fotocamera del tuo dispositivo direttamente dal browser. Nessuna app da installare, tutto in un clic.</p>
+        </div>
+        <div class="feature-card">
+          <img src="frame-icon.png" alt="Icona Cornice">
+          <h3>Applica Cornici</h3>
+          <p>Scegli tra cornici predefinite o carica la tua PNG trasparente per personalizzare ogni foto.</p>
+        </div>
+        <div class="feature-card">
+          <img src="download-icon.png" alt="Icona Download">
+          <h3>Salva e Stampa</h3>
+          <p>Salva l’immagine in formato PNG con un nome univoco (data e ora) o stampala direttamente dalla web app.</p>
+        </div>
+        <div class="feature-card">
+          <img src="pwa-icon.png" alt="Icona PWA">
+          <h3>Installazione PWA</h3>
+          <p>Aggiungi PhotoApp2 alla tua home screen e usala come un’app nativa, anche offline.</p>
+        </div>
       </div>
     </div>
-    <div class="right-panel">
-      <button id="flash-btn">Attiva Flash</button>
-      <button id="capture-btn">Scatta Foto</button>
-      <button id="upload-frame-btn">Carica Cornice</button>
-      <button id="reset-frame-btn">Ripristina Cornice</button>
-      <a id="download-link" href="#" download="foto_cornice.png" style="display:none;">Scarica Foto</a>
-      <button id="print-btn" style="display:none;">Stampa</button>
-      <button id="discard-btn" style="display:none;">Scarta</button>
-      <input type="file" id="frame-input" accept="image/*" style="display:none;" />
+  </section>
+
+  <!-- Sezione PWA e Installazione -->
+  <section id="pwa">
+    <div class="container">
+      <h2>PhotoApp2: Più di una Web App, un’Esperienza Nativa</h2>
+      <p>Installa PhotoApp2 sul tuo dispositivo e usala come un’app tradizionale, senza passare dagli store.</p>
+      <div class="pwa-steps">
+        <div class="step">
+          <img src="install-step1.png" alt="Passo 1">
+          <p>Clicca sul pulsante ‘Installa su tuo device’.</p>
+        </div>
+        <div class="step">
+          <img src="install-step2.png" alt="Passo 2">
+          <p>Aggiungi PhotoApp2 alla tua home screen.</p>
+        </div>
+        <div class="step">
+          <img src="install-step3.png" alt="Passo 3">
+          <p>Apri l’app direttamente dalla tua home screen.</p>
+        </div>
+      </div>
     </div>
-    <canvas id="canvas" style="display:none;"></canvas>
-  </div>
+  </section>
 
-  <!-- Sovrapposizione per il flash -->
-  <div id="flash-overlay"></div>
+  <!-- Sezione Demo -->
+  <section id="demo">
+    <div class="container">
+      <h2>Guarda PhotoApp2 in Azione</h2>
+      <video controls>
+        <source src="demo-video.mp4" type="video/mp4">
+        Il tuo browser non supporta il video.
+      </video>
+    </div>
+  </section>
 
-  <!-- Notifiche -->
-  <div id="notification" class="notification"></div>
+  <!-- Sezione Supporto e Compatibilità -->
+  <section id="support">
+    <div class="container">
+      <h2>Compatibilità e Limitazioni</h2>
+      <p>PhotoApp2 funziona su tutti i browser moderni (Chrome, Firefox, Edge, Safari).</p>
+      <p>Il flash/camera torch è supportato solo su alcuni dispositivi Android con Chrome.</p>
+      <p>Hai domande o problemi? Contattaci all’indirizzo <a href="mailto:support@photoapp2.com">support@photoapp2.com</a>.</p>
+    </div>
+  </section>
 
-  <script src="assets/js/script.js"></script>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#intro">Introduzione</a>
+        <a href="#features">Caratteristiche</a>
+        <a href="#pwa">PWA</a>
+        <a href="#demo">Demo</a>
+        <a href="#support">Supporto</a>
+      </div>
+      <div class="social">
+        <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+        <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+      </div>
+      <p>PhotoApp2 è un progetto sviluppato da [Nome Azienda].</p>
+      <p>Hosting su GitHub Pages o server di proprietà.</p>
+      <p>Credits: PhotoApp2 utilizza tecnologie web moderne come HTML5, CSS3 e JavaScript.</p>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>
