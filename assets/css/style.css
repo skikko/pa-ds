@@ -18,6 +18,14 @@ body {
 
 .container {
     text-align: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+#loading-message {
+    font-size: 1.2em;
+    margin-bottom: 20px;
 }
 
 .landscape-warning {
@@ -27,6 +35,7 @@ body {
 }
 
 video, canvas {
+    width: 100%;
     max-width: 100%;
     height: auto;
     border: 2px solid #fff;
